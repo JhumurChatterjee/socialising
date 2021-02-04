@@ -1,2 +1,8 @@
 en:
   page_title: "Socialising – A Location Sharing Application"
+
+  alert_prefix:
+    success: "Well done!"
+    info: "Heads up!"
+    warning: "Warning!"
+    danger: "Oh snap!"

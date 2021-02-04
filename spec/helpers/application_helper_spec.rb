@@ -15,4 +15,36 @@ RSpec.describe ApplicationHelper, type: :helper do
       end
     end
   end
+
+  describe "#flash_message_prefix" do
+    context "when alert type is success" do
+      it "should return success alert prefix" do
+        expect(flash_message_prefix("success")).to eq(t("alert_prefix.success"))
+      end
+    end
+
+    context "when alert type is info" do
+      it "should return info alert prefix" do
+        expect(flash_message_prefix("info")).to eq(t("alert_prefix.info"))
+      end
+    end
+
+    context "when alert type is warning" do
+      it "should return warning alert prefix" do
+        expect(flash_message_prefix("warning")).to eq(t("alert_prefix.warning"))
+      end
+    end
+
+    context "when alert type is danger" do
+      it "should return danger alert prefix" do
+        expect(flash_message_prefix("danger")).to eq(t("alert_prefix.danger"))
+      end
+    end
+
+    context "when alert type is others" do
+      it "should return empty alert prefix" do
+        expect(flash_message_prefix("others")).to eq("")
+      end
+    end
+  end
 end
