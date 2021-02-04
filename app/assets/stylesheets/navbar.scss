@@ -1,0 +1,16 @@
+.navbar-brand img {
+  height: 34px;
+}
+
+.nav-link {
+  color: #44e2fb;
+  transition: all 0.3s ease-in;
+
+  &:hover {
+    color: #2ab4ca;
+  }
+}
+
+.navbar-toggler img {
+  height: 26px;
+}
