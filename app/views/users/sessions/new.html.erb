@@ -1,0 +1,42 @@
+<% provide(:title, "Login") %>
+
+<div class="row justify-content-center">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title mb-5 text-center">Welcome back</h3>
+
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-group">
+            <%= f.label :email, "Email Address" %>
+            <%= f.email_field :email, class: "form-control", autofocus: true, required: true, placeholder: "Email Address", autocomplete: "email" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :password %>
+            <%= f.password_field :password, class: "form-control", required: true, placeholder: "Password", minlength: 6, maxlength: 128, autocomplete: "current-password" %>
+          </div>
+
+          <div class="form-row">
+            <div class="col-sm-12 col-md-6">
+              <div class="form-group form-check">
+                <%= f.check_box :remember_me, class: "form-check-input" %>
+                <%= f.label :remember_me, class: "form-check-label" %>
+              </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 text-md-right">
+              <%= link_to "Forgot password", new_password_path(resource_name) %>
+            </div>
+          </div>
+
+          <br />
+          <%= f.submit "Login", class: "btn btn-primary btn-xs-block", data: { disable_with: "Logging..." } %>
+        <% end %>
+
+        <hr>
+        <%= render "users/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>

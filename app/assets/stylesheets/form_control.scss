@@ -1,0 +1,25 @@
+.form-group {
+  margin-bottom: 1rem;
+
+  label {
+    font-size: 12px;
+    text-transform: uppercase;
+    user-select: none;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-control {
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    height: 46px;
+
+    &:focus {
+      box-shadow: none;
+      border-color: #44e2fb;
+    }
+
+    &:hover {
+      border-color: #44e2fb;
+    }
+  }
+}

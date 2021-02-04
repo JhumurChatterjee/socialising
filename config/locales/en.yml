@@ -6,3 +6,7 @@ en:
     info: "Heads up!"
     warning: "Warning!"
     danger: "Oh snap!"
+
+  message_type:
+    notice: "success"
+    alert: "danger"

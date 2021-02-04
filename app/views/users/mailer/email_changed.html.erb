@@ -1,0 +1,19 @@
+<% provide(:title, "Email Changed") %>
+
+<tr>
+  <td style="color: #153643; font-family: sans-serif; font-size: 16px; line-height: 22px;">
+    <p>Hey <%= @resource.username %>,</p>
+    <% if @resource.try(:unconfirmed_email?) %>
+      <p>We're contacting you to notify you that your email is being changed to <%= @resource.unconfirmed_email %>.</p>
+    <% else %>
+      <p>We're contacting you to notify you that your email has been changed to <%= @resource.email %>.</p>
+    <% end %>
+  </td>
+</tr>
+
+<tr>
+  <td style="color: #153643; font-family: sans-serif; font-size: 16px; line-height: 22px;">
+    <p>Thanks,</p>
+    <p>Team Socialising</p>
+  </td>
+</tr>

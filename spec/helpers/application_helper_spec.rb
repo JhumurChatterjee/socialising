@@ -47,4 +47,24 @@ RSpec.describe ApplicationHelper, type: :helper do
       end
     end
   end
+
+  describe "#message_type" do
+    context "when message type is notice" do
+      it "should return info as message type" do
+        expect(message_type("notice")).to eq(t("message_type.notice"))
+      end
+    end
+
+    context "when message type is alert" do
+      it "should return danger as message type" do
+        expect(message_type("alert")).to eq(t("message_type.alert"))
+      end
+    end
+
+    context "when message type is other than notice and alert" do
+      it "should return same message type" do
+        expect(message_type("success")).to eq("success")
+      end
+    end
+  end
 end

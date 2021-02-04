@@ -18,4 +18,12 @@ module ApplicationHelper
     else ""
     end
   end
+
+  def message_type(type)
+    case type
+    when "notice" then t("message_type.notice")
+    when "alert"  then t("message_type.alert")
+    else type
+    end
+  end
 end

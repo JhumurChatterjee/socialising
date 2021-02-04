@@ -1,13 +1,112 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <style>
-      /* Email styles need to be inline */
+    <title><%= yield(:title) %> | Socialising – A Location Sharing Application</title>
+
+    <style type="text/css">
+      .primary-button:hover {
+        background-color: #008495 !important;
+      }
+
+      @media(max-width: 589px) {
+        .page-subtitle {
+          font-size: 16px !important;
+        }
+
+        .page-title {
+          font-size: 28px !important;
+        }
+
+        .body-title {
+          font-size: 20px !important;
+        }
+
+        p {
+          font-size: 14px !important;
+        }
+      }
     </style>
   </head>
 
-  <body>
-    <%= yield %>
+  <body bgcolor="#F6F8F1" style="margin: 0; padding: 0; min-width: 100%!important;">
+  	<table width="100%" bgcolor="#F6F8F1" border="0" cellpadding="0" cellspacing="0">
+  		<tr>
+  	  	<td>
+  	    	<table bgcolor="#FFFFFF" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 100%; max-width: 600px;">
+  	      	<tr>
+  	        	<td bgcolor="#44e2fb" style="padding: 40px 30px 20px 30px;">
+  	          	<table width="70" align="left" border="0" cellpadding="0" cellspacing="0">
+  	            	<tr>
+  	              	<td height="70" style="padding: 0 20px 20px 0;">
+                      <%= image_tag "mail-icon.png", width: 70, height: 70, alt: "logo" %>
+  	              	</td>
+  		            </tr>
+  		          </table>
+
+  		          <table align="left" border="0" cellpadding="0" cellspacing="0" style="width: 100%; max-width: 425px;">
+  		            <tr>
+  		              <td height="70">
+  		                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  		                  <tr>
+  		                    <td class="page-subtitle" style="font-size: 20px; color: #FFFFFF; text-transform: uppercase; font-weight: bold; font-family: sans-serif; letter-spacing: 5px; padding: 0 0 0 3px;">
+  		                      <%= yield(:title) %>
+  		                    </td>
+  		                  </tr>
+
+                        <tr>
+  		                    <td class="page-title" style="padding: 5px 0 0 0; color: #153643; font-family: sans-serif; font-size: 33px; line-height: 38px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px;">
+  		                      Socialising
+  		                    </td>
+  		                  </tr>
+  		                </table>
+  		              </td>
+  		            </tr>
+  		          </table>
+  		        </td>
+  		      </tr>
+
+  		      <tr>
+  		        <td style="padding: 30px 30px 30px 30px; border-bottom: 1px solid #F2EEED;">
+  		          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  		            <%= yield %>
+  		          </table>
+  		        </td>
+  		      </tr>
+
+  		      <tr>
+  		        <td bgcolor="#44e2fb" style="padding: 20px 30px 15px 30px;">
+  		          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  		            <tr>
+  		              <td align="center" style="font-family: sans-serif; font-size: 16px; color: #FFFFFF;">
+  		                &copy; 2021 Socialising | India
+  		              </td>
+  		            </tr>
+  		            <tr>
+  		              <td align="center" style="padding: 20px 0 0 0;">
+  		                <table border="0" cellspacing="0" cellpadding="0">
+  		                  <tr>
+  		                    <td width="37" style="text-align: center; padding: 0 10px 0 10px;">
+  		                      <a href="http://www.facebook.com/" style="display: inline-block; color: #FFFFFF;">
+  		                        <%= image_tag "facebook.png", width: 30, height: 30, alt: "facebook logo" %>
+  		                      </a>
+  		                    </td>
+
+  		                    <td width="37" style="text-align: center; padding: 0 10px 0 10px;">
+  		                      <a href="http://www.twitter.com/" style="display: inline-block; color: #FFFFFF;">
+                              <%= image_tag "twitter.png", width: 30, height: 30, alt: "twitter logo" %>
+  		                      </a>
+  		                    </td>
+  		                  </tr>
+  		                </table>
+  		              </td>
+  		            </tr>
+  		          </table>
+  		        </td>
+  		      </tr>
+  		    </table>
+  	    </td>
+  	  </tr>
+  	</table>
   </body>
 </html>
