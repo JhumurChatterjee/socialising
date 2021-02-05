@@ -67,6 +67,11 @@ RSpec.describe FriendRequest, type: :model do
         expect(friend_request.accepted_at).not_to eq(nil)
       end
 
+      it "should add the mutual friend ids also" do
+        expect(friend_request.user.mutual_friend_ids).to include(friend_request.friend_id.to_s)
+        expect(friend_request.friend.mutual_friend_ids).to include(friend_request.user_id.to_s)
+      end
+
       it "should not add time of accepting request to rejected_at field" do
         expect(friend_request.rejected_at).to eq(nil)
       end

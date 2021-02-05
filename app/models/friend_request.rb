@@ -10,6 +10,8 @@ class FriendRequest < ApplicationRecord
   def update_request(type)
     if type == "accept"
       update(accepted_at: Time.current)
+      friend.update(mutual_friend_ids: friend.mutual_friend_ids.push(user_id))
+      user.update(mutual_friend_ids: user.mutual_friend_ids.push(friend_id))
     elsif type == "reject"
       update(rejected_at: Time.current)
     end

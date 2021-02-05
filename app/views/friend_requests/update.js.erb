@@ -1,1 +1,1 @@
-$('#friend_request_<%= @friend_request.id %>').hide();
+$('#friend_request_<%= @friend_request.id %>').find('.action-buttons').html('<%= params[:type].titleize %>ed');

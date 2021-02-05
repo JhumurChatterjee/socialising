@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2021_02_05_102945) do
     t.string "username", limit: 20, default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.text "mutual_friend_ids", default: [], array: true
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

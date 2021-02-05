@@ -89,4 +89,32 @@ describe FriendRequestsController, type: :controller do
       expect(response).to render_template(:rejected)
     end
   end
+
+  describe "PATCH #update" do
+    let(:friend_request) { create(:friend_request, friend: user, rejected_at: DateTime.now) }
+
+    it "requires login" do
+      sign_out user
+      put :update, xhr: true, format: :js, params: { id: friend_request.id, type: "accept" }
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    it "returns http status 200" do
+      sign_in user
+      put :update, xhr: true, format: :js, params: { id: friend_request.id, type: "accept" }
+      expect(response).to have_http_status(:ok)
+    end
+
+    it "populates instance variable with a friend request object" do
+      sign_in user
+      put :update, xhr: true, format: :js, params: { id: friend_request.id, type: "accept" }
+      expect(assigns(:friend_request)).to eq(friend_request)
+    end
+
+    it "updates the accepted_at field with the time of accepting the request" do
+      sign_in user
+      put :update, xhr: true, format: :js, params: { id: friend_request.id, type: "accept" }
+      expect(friend_request.reload.accepted_at).not_to eq(nil)
+    end
+  end
 end
