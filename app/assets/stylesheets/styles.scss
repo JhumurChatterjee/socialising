@@ -1,0 +1,46 @@
+.well {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  background-color: #EBEBEB;
+  border-radius: 4px;
+  margin-top: 3rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .filter-links {
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+  }
+}
+
+.list {
+  margin-top: 3rem;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #EBEBEB;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  .user-name {
+    word-break: break-all;
+    margin-right: 15px;
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 120px;
+  }
+}

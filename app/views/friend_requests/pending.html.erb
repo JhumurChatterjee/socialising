@@ -1,0 +1,29 @@
+<% provide(:title, "Pending Friend Requests") %>
+
+<section class="header">
+  <h4>Pending Friend Requests</h4>
+
+  <div class="filter-links">
+    <%= link_to "Accepted", accepted_friend_requests_path %>
+    <%= link_to "Rejected", rejected_friend_requests_path %>
+  </div>
+</section>
+
+<% if @friend_requests.blank? %>
+  <section class="well">
+    No pending friend requests are present.
+  </section>
+<% else %>
+  <section class="list">
+    <% @friend_requests.each do |fr| %>
+      <div class="list-item" id="friend_request_<%= fr.id %>">
+        <span class="user-name"><%= fr.user.username %></span>
+
+        <div class="action-buttons">
+          <%= link_to "Accept", "#", title: "Accept", class: "text-primary", remote: true %>
+          <%= link_to "Reject", "#", title: "Reject", class: "text-danger", remote: true %>
+        </div>
+      </div>
+    <% end %>
+  </section>
+<% end %>
