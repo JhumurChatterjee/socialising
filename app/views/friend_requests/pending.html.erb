@@ -20,8 +20,8 @@
         <span class="user-name"><%= fr.user.username %></span>
 
         <div class="action-buttons">
-          <%= link_to "Accept", "#", title: "Accept", class: "text-primary", remote: true %>
-          <%= link_to "Reject", "#", title: "Reject", class: "text-danger", remote: true %>
+          <%= link_to "Accept", friend_request_path(id: fr.id, type: "accept"), method: :patch, title: "Accept", class: "text-primary", remote: true %>
+          <%= link_to "Reject", friend_request_path(id: fr.id, type: "reject"), method: :patch, title: "Reject", class: "text-danger", remote: true %>
         </div>
       </div>
     <% end %>

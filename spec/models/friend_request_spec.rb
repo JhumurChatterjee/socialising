@@ -58,4 +58,30 @@ RSpec.describe FriendRequest, type: :model do
       end
     end
   end
+
+  describe "update_request" do
+    context "when we want to add time of accepting request to accepted_at field" do
+      before { friend_request.update_request("accept") }
+
+      it "should add time of accepting request to accepted_at field" do
+        expect(friend_request.accepted_at).not_to eq(nil)
+      end
+
+      it "should not add time of accepting request to rejected_at field" do
+        expect(friend_request.rejected_at).to eq(nil)
+      end
+    end
+
+    context "when we want to add time of rejecting request to rejected_at field" do
+      before { friend_request.update_request("reject") }
+
+      it "should add time of rejecting request to rejected_at field" do
+        expect(friend_request.rejected_at).not_to eq(nil)
+      end
+
+      it "should not add time of accepting request to accepted_at field" do
+        expect(friend_request.accepted_at).to eq(nil)
+      end
+    end
+  end
 end

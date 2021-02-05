@@ -12,4 +12,9 @@ class FriendRequestsController < ApplicationController
   def rejected
     @friend_requests = FriendRequest.received(current_user).rejected.includes(:user)
   end
+
+  def update
+    @friend_request = FriendRequest.find(params[:id])
+    @friend_request.update_request(params[:type])
+  end
 end
