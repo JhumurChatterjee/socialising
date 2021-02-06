@@ -6,6 +6,7 @@ RSpec.describe User, type: :model do
   describe "active record columns" do
     it { should have_db_column(:username) }
     it { should have_db_column(:email) }
+    it { should have_db_column(:mutual_friend_ids) }
     it { should have_db_column(:encrypted_password) }
     it { should have_db_column(:reset_password_token) }
     it { should have_db_column(:reset_password_sent_at) }
@@ -45,5 +46,38 @@ RSpec.describe User, type: :model do
     it { should validate_length_of(:email).is_at_most(100) }
     it { should validate_uniqueness_of(:username).case_insensitive }
     it { should allow_value('jhumur').for(:username) }
+  end
+
+  describe "#associations" do
+    it { should have_many(:friend_requests).dependent(:destroy) }
+  end
+
+  describe ".scopes" do
+    context ".order_by_username" do
+      let(:user_1) { create(:user, username: "Jhumur") }
+      let(:user_2) { create(:user, username: "Mitali") }
+
+      it "should order user with username in ascending order" do
+        expect(User.order_by_username).to eq([user_1, user_2])
+      end
+    end
+  end
+
+  describe ".serach_by_name" do
+    let!(:user_1) { create(:user, username: "Jhumur") }
+    let!(:user_2) { create(:user, username: "Mitali") }
+
+    context "when params is not present" do
+      it "should return all users" do
+        expect(User.search(nil).count).to eq(User.all.count)
+      end
+    end
+
+    context "when params is present" do
+      it "should return user with matching username" do
+        expect(User.search("mita")).to include(user_2)
+        expect(User.search("mita")).not_to include(user_1)
+      end
+    end
   end
 end

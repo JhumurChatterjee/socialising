@@ -90,6 +90,36 @@ describe FriendRequestsController, type: :controller do
     end
   end
 
+  describe "POST #create" do
+    let(:friend) { create :user }
+
+    it "requires login" do
+      sign_out user
+      post :create, xhr: true, format: :js, params: { friend_request: { friend_id: friend.id }}
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    it "returns http status 200" do
+      sign_in user
+      post :create, xhr: true, format: :js, params: { friend_request: { friend_id: friend.id }}
+      expect(response).to have_http_status(:ok)
+    end
+
+    it "creates a record in friend_request table" do
+      sign_in user
+      expect {
+        post :create, xhr: true, format: :js, params: { friend_request: { friend_id: friend.id }}
+      }.to change(FriendRequest, :count).by(1)
+    end
+
+    it "does not save the new friend_request in the database" do
+      sign_in user
+      expect{
+        post :create, xhr: true, format: :js, params: { friend_request: { friend_id: nil }}
+      }.not_to change(FriendRequest, :count)
+    end
+  end
+
   describe "PATCH #update" do
     let(:friend_request) { create(:friend_request, friend: user, rejected_at: DateTime.now) }
 

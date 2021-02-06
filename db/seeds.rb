@@ -12,6 +12,8 @@ user = User.create(username: "Jhumur", email: "jhumurchatterjee1996@gmail.com", 
 
   if Faker::Boolean.boolean
     FriendRequest.create(user: new_user, friend: user, accepted_at: DateTime.now)
+    new_user.update(mutual_friend_ids: new_user.mutual_friend_ids.push(user.id))
+    user.update(mutual_friend_ids: user.mutual_friend_ids.push(new_user.id))
   else
     FriendRequest.create(user: new_user, friend: user)
   end

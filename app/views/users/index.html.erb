@@ -1,0 +1,35 @@
+<% provide(:title, "All Users") %>
+
+<section class="header">
+  <h4>All Users</h4>
+</section>
+
+<%= form_tag users_path, method: :get  do %>
+  <%= search_field_tag :search, params[:search], class: "form-control", placeholder: "Search by username" %>
+<% end %>
+
+<% if @users.blank? %>
+  <section class="well">
+    No user present
+  </section>
+<% else %>
+  <section class="list">
+    <% @users.each do |user| %>
+      <div class="list-item" id="user_<%= user.id %>">
+        <span class="user-name"><%= user.username %></span>
+
+        <div class="action-buttons">
+          <% if current_user.mutual_friend_ids.include?(user.id.to_s) %>
+            <span title="Already Friend">Already Friend</span>
+          <% elsif @pending_user_ids.include?(user.id) %>
+            <span title="Request Received">Request Received</span>
+          <% elsif @sent_user_ids.include?(user.id) %>
+            <span title="Request Sent">Request Sent</span>
+          <% else %>
+            <%= link_to "Send Request", friend_requests_path(friend_request: { friend_id: user.id }), method: :post, title: "Send Request", class: "text-primary", remote: true %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </section>
+<% end %>
