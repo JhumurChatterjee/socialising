@@ -17,7 +17,7 @@
   <section class="list">
     <% @friend_requests.each do |fr| %>
       <div class="list-item" id="friend_request_<%= fr.id %>">
-        <span class="user-name"><%= fr.user.username %></span>
+        <span class="user-name"><%= link_to fr.user.username, "/#{fr.user.username}", title: "Go to #{fr.user.username}" %></span>
       </div>
     <% end %>
   </section>

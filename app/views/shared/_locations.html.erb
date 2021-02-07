@@ -1,5 +1,5 @@
 <% @locations.reverse.each do |location| %>
-  <div class="col-4">
+  <div class="col-sm-12 col-lg-6 col-xl-4">
     <div class="card p-3 mb-4">
       <h6><%= location.address %></h6>
       <small class="text-muted mb-2">Shared by <%= location.user == current_user ? "you" : "<a href='/#{location.user.username}'>#{location.user.username}</a>".html_safe %></small>
