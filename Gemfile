@@ -6,6 +6,7 @@ ruby "2.7.2"
 gem "bootsnap", "~> 1.7"
 gem "devise", "~> 4.7", ">= 4.7.3"
 gem "dotenv-rails", "~> 2.7", ">= 2.7.6"
+gem "faker", "~> 2.15", ">= 2.15.1"
 gem "geocoder", "~> 1.3", ">= 1.3.7"
 gem "jbuilder", "~> 2.11", ">= 2.11.2"
 gem "pagy", "~> 3.10"
@@ -18,7 +19,6 @@ gem "turbolinks", "~> 5.2", ">= 5.2.1"
 gem "webpacker", "~> 5.2", ">= 5.2.1"
 
 group :development, :test do
-  gem "faker", "~> 2.15", ">= 2.15.1"
   gem "pry-rails", "~> 0.3.9"
   gem "rspec-rails", "~> 4.0", ">= 4.0.2"
 end
