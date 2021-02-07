@@ -1,0 +1,29 @@
+<% provide(:title, "New Friend Request Received") %>
+
+<tr>
+  <td style="color: #153643; font-family: sans-serif; font-size: 16px; line-height: 22px;">
+    <p>Hey <%= @friend.username %>,</p>
+    <p><%= @sender.username %> wants to be friends with you!!</p>
+    <p>Please click bellow button to see all pending request. Happy Sharing!!</p>
+  </td>
+</tr>
+
+<tr>
+  <td style="padding: 20px 0 20px 0;">
+    <table border="0" cellspacing="0" cellpadding="0">
+      <tr height="45">
+        <td>
+          <a href="<%= pending_friend_requests_url %>" target="_blank" class="primary-button" style="background-color: #44e2fb; border-radius: 4px; color: #FFFFFF; text-decoration: none; text-align: center; font-size: 18px; font-family: sans-serif; font-weight: bold; padding: 12px 30px;">See pending list</a>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+
+
+<tr>
+  <td style="color: #153643; font-family: sans-serif; font-size: 16px; line-height: 22px;">
+    <p>Thanks,</p>
+    <p>Team Socialising</p>
+  </td>
+</tr>

@@ -1,4 +1,6 @@
 class FriendRequest < ApplicationRecord
+  after_create :send_notification
+
   belongs_to :user
   belongs_to :friend, class_name: "User"
 
@@ -12,8 +14,15 @@ class FriendRequest < ApplicationRecord
       update(accepted_at: Time.current)
       friend.update(mutual_friend_ids: friend.mutual_friend_ids.push(user_id))
       user.update(mutual_friend_ids: user.mutual_friend_ids.push(friend_id))
+      FriendRequestMailer.request_accepted(id).deliver_later
     elsif type == "reject"
       update(rejected_at: Time.current)
     end
+  end
+
+  private
+
+  def send_notification
+    FriendRequestMailer.request_received(id).deliver_now
   end
 end

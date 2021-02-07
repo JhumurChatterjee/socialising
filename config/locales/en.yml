@@ -12,3 +12,10 @@ en:
     alert: "danger"
 
   share_success: "Location has been successfully shared."
+
+  mailer:
+    friend_request:
+      received: "New Friend Request Received"
+      accepted: "Friend Request Accepted"
+    location:
+      shared: "Location Shared with You"
