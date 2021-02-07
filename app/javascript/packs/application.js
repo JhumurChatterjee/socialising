@@ -6,8 +6,26 @@
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
-import "channels"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+$(document).on('turbolinks:load', function() {
+  window.addEventListener('resize', loadNextPage);
+  window.addEventListener('scroll', loadNextPage);
+  window.addEventListener('load', loadNextPage);
+});
+
+var loadNextPage = function () {
+  if ($('#locations').height() === undefined || $('#next_link').data('loading')) { return }
+  var wBottom = $(window).scrollTop() + $(window).height();
+  var elBottom = $('#locations').offset().top + $('#locations').height();
+
+  if (wBottom > elBottom) {
+    if ($('#next_link')[0] !== undefined) {
+      $('#next_link')[0].click();
+      $('#next_link').data('loading', true);
+    }
+  }
+};

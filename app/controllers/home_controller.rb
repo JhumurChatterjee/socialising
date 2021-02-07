@@ -6,6 +6,7 @@ class HomeController < ApplicationController
   end
 
   def timeline
-    @locations = Location.visible(current_user.id).includes(:user)
+    @locations = Location.visible(current_user.id)
+    @pagy, @locations = pagy_countless(@locations.includes(:user), items: 21, link_extra: 'data-remote="true"')
   end
 end

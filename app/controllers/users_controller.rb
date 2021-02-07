@@ -11,6 +11,6 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:id])
     redirect_to timeline_path unless @user
 
-    @locations = @user.locations.publicly_visible
+    @pagy, @locations = pagy_countless(@user.locations.publicly_visible, items: 21, link_extra: 'data-remote="true"')
   end
 end
