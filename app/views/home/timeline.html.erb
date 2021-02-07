@@ -1,0 +1,26 @@
+<% provide(:title, "Timeline") %>
+
+<div class="d-flex justify-content-between mb-5">
+  <h4>Timeline</h4>
+  <%= link_to "Share Location", new_location_path, remote: true, title: "Share Location", class: "btn btn-primary" %>
+</div>
+
+<div class="row">
+  <% @locations.reverse.each do |location| %>
+    <div class="col-4">
+      <div class="card p-3 mb-4">
+        <h6><%= location.address %></h6>
+        <small class="text-muted mb-2">Shared by <%= location.user == current_user ? "you" : "<a href='/#{location.user.username}'>#{location.user.username}</a>".html_safe %></small>
+        <img width="300" height="200" src="https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=300&height=200&center=lonlat:<%= location.longitude %>,<%= location.latitude %>&zoom=14&apiKey=cb9d20bdd8dd4e999368d266a01d3c73" alt="<%= location.address %>">
+      </div>
+    </div>
+  <% end %>
+
+  <% if @locations.blank? %>
+    <div class="col-12">
+      <div class="jumbotron  text-center">
+        <p>No location has been shared yet. <%= link_to "Share now", new_location_path, remote: true, title: "Share Location" %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

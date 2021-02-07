@@ -50,6 +50,8 @@ RSpec.describe User, type: :model do
 
   describe "#associations" do
     it { should have_many(:friend_requests).dependent(:destroy) }
+    it { should have_many(:locations).dependent(:destroy) }
+    it { should have_many(:shared_locations).dependent(:destroy) }
   end
 
   describe ".scopes" do

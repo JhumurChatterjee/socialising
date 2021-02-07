@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root "home#index"
   devise_for :users
 
   resources :friend_requests, only: %i[create update] do
@@ -10,6 +11,8 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: :index
+  resources :locations, only: %i[create new]
 
-  root "home#index"
+  get "/timeline", to: "home#timeline"
+  get "/:id", to: "users#show"
 end

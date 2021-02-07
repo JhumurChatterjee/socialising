@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_05_102945) do
+ActiveRecord::Schema.define(version: 2021_02_06_135326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,25 @@ ActiveRecord::Schema.define(version: 2021_02_05_102945) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["friend_id"], name: "index_friend_requests_on_friend_id"
     t.index ["user_id"], name: "index_friend_requests_on_user_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "address", null: false
+    t.float "latitude", null: false
+    t.float "longitude", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_locations_on_user_id"
+  end
+
+  create_table "shared_locations", force: :cascade do |t|
+    t.bigint "location_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["location_id"], name: "index_shared_locations_on_location_id"
+    t.index ["user_id"], name: "index_shared_locations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,4 +76,7 @@ ActiveRecord::Schema.define(version: 2021_02_05_102945) do
 
   add_foreign_key "friend_requests", "users"
   add_foreign_key "friend_requests", "users", column: "friend_id"
+  add_foreign_key "locations", "users"
+  add_foreign_key "shared_locations", "locations"
+  add_foreign_key "shared_locations", "users"
 end

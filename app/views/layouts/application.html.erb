@@ -21,12 +21,11 @@
   <body>
     <%= render "layouts/navbar" %>
 
-    <div class="container pt-5">
+    <div class="container" id="main_content">
       <%= render "layouts/flash_messages" %>
-
-      <div class="mt-5">
-        <%= yield %>
-      </div>
+      <%= yield %>
     </div>
+
+    <%= render "locations/location_modal" %>
   </body>
 </html>

@@ -1974,7 +1974,7 @@ Style/GuardClause:
   Enabled: true
   # `MinBodyLength` defines the number of lines of the a body of an `if` or `unless`
   # needs to have to trigger this cop
-  MinBodyLength: 1
+  MinBodyLength: 4
 
 Style/HashEachMethods:
   Description: 'Use Hash#each_key and Hash#each_value.'

@@ -6,6 +6,7 @@
 
 <%= form_tag users_path, method: :get  do %>
   <%= search_field_tag :search, params[:search], class: "form-control", placeholder: "Search by username" %>
+  <small class="text-muted">Press ↵ enter to search</small>
 <% end %>
 
 <% if @users.blank? %>

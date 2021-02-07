@@ -10,3 +10,5 @@ en:
   message_type:
     notice: "success"
     alert: "danger"
+
+  share_success: "Location has been successfully shared."
