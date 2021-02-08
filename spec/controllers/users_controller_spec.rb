@@ -40,4 +40,36 @@ describe UsersController, type: :controller do
       expect(response).to render_template(:index)
     end
   end
+
+  describe "#GET show" do
+    it "requires login" do
+      sign_out user
+      get :show, params: { id: "Jhumur" }
+      expect(response).to redirect_to(new_user_session_url)
+    end
+
+    it "returns http status 200" do
+      sign_in user
+      get :show, params: { id: "Jhumur" }
+      expect(response).to have_http_status(:ok)
+    end
+
+    it "populates instance variable with an object of user" do
+      sign_in user
+      get :show, params: { id: "Jhumur" }
+      expect(assigns(:user)).to eq(friend)
+    end
+
+    it "render show" do
+      sign_in user
+      get :show, params: { id: "Jhumur" }
+      expect(response).to render_template(:show)
+    end
+
+    it "render timeline page if no username matches" do
+      sign_in user
+      get :show, params: { id: "__" }
+      expect(response).to redirect_to(timeline_path)
+    end
+  end
 end

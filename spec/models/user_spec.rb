@@ -41,6 +41,7 @@ RSpec.describe User, type: :model do
 
   describe "validations" do
     it { should validate_presence_of(:username) }
+    it { should validate_exclusion_of(:username).in_array(%w(users home friend_requests locations timeline)) }
     it { should validate_presence_of(:email) }
     it { should validate_length_of(:username).is_at_most(20) }
     it { should validate_length_of(:email).is_at_most(100) }

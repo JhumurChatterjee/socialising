@@ -61,7 +61,9 @@ RSpec.describe FriendRequest, type: :model do
 
   describe "update_request" do
     context "when we want to add time of accepting request to accepted_at field" do
-      before { friend_request.update_request("accept") }
+      before do
+        friend_request.update_request("accept")
+      end
 
       it "should add time of accepting request to accepted_at field" do
         expect(friend_request.accepted_at).not_to eq(nil)
@@ -70,6 +72,13 @@ RSpec.describe FriendRequest, type: :model do
       it "should add the mutual friend ids also" do
         expect(friend_request.user.mutual_friend_ids).to include(friend_request.friend_id.to_s)
         expect(friend_request.friend.mutual_friend_ids).to include(friend_request.user_id.to_s)
+      end
+
+      it "should fire a mail to the requestor" do
+        ActionMailer::Base.deliveries.last.tap do |mail|
+          expect(mail.from).to eq(["jhumurchatterjee1996@gmail.com"])
+          expect(mail.subject).to eq(I18n.t("mailer.friend_request.accepted"))
+        end
       end
 
       it "should not add time of accepting request to rejected_at field" do
@@ -86,6 +95,25 @@ RSpec.describe FriendRequest, type: :model do
 
       it "should not add time of accepting request to accepted_at field" do
         expect(friend_request.accepted_at).to eq(nil)
+      end
+    end
+  end
+
+  describe "#send_notification" do
+    let(:user)           { create :user }
+    let(:friend)         { create :user }
+    let(:friend_request) { create :friend_request }
+
+    context "when we want to send notification to friend" do
+      it "sends an email" do
+        expect {
+          FriendRequest.new(user_id: user.id, friend_id: friend.id).save
+        }.to change { ActionMailer::Base.deliveries.count }.by(3)
+
+        ActionMailer::Base.deliveries.last.tap do |mail|
+          expect(mail.from).to eq(["jhumurchatterjee1996@gmail.com"])
+          expect(mail.subject).to eq(I18n.t("mailer.friend_request.received"))
+        end
       end
     end
   end

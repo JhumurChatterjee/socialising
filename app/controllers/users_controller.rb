@@ -9,8 +9,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(username: params[:id])
-    redirect_to timeline_path unless @user
 
-    @pagy, @locations = pagy_countless(@user.locations.publicly_visible, items: 21, link_extra: 'data-remote="true"')
+    if @user
+      @pagy, @locations = pagy_countless(@user.locations.publicly_visible, items: 21, link_extra: 'data-remote="true"')
+    else
+      redirect_to timeline_path, flash: { danger: "User is not present with #{params[:id]} username." }
+    end
   end
 end

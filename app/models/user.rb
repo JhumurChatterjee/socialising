@@ -9,7 +9,12 @@ class User < ApplicationRecord
   has_many :locations,        dependent: :destroy
   has_many :shared_locations, dependent: :destroy
 
-  validates :username, presence: true, length: { maximum: 20 }, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]+\Z/ }
+  validates :username, presence: true,
+                       length: { maximum: 20 },
+                       uniqueness: { case_sensitive: false },
+                       format: { with: /\A[a-zA-Z0-9]+\Z/ },
+                       exclusion: { in: %w[users home friend_requests locations timeline] }
+
   validates :email, presence: true, length: { maximum: 100 }
 
   scope :order_by_username, -> { order(username: :asc) }
