@@ -3,7 +3,7 @@
     <div class="card p-3 mb-4">
       <h6><%= location.address %></h6>
       <small class="text-muted mb-2">Shared by <%= location.user == current_user ? "you" : "<a href='/#{location.user.username}'>#{location.user.username}</a>".html_safe %></small>
-      <img width="300" height="200" src="https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=300&height=200&center=lonlat:<%= location.longitude %>,<%= location.latitude %>&zoom=14&apiKey=cb9d20bdd8dd4e999368d266a01d3c73" alt="<%= location.address %>">
+      <%= render "shared/location", object: location %>
     </div>
   </div>
 <% end %>
